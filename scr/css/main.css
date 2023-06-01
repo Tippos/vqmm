@@ -1,0 +1,254 @@
+body {
+  font-family: arial;
+}
+#wall {
+  background-image: url("../img/images.jpeg");
+  background-size: contain;
+  background-size: cover;
+
+}
+/* Sets the background image for the wheel */
+.the_wheel img {
+  position: absolute;
+}
+.banner {
+  padding: 20px;
+  background: linear-gradient(
+    98.49deg,
+    #dfb557 -39.81%,
+    #fdf7bf 33.9%,
+    #d6ab48 94.09%,
+    #ae832d 149.71%,
+    #ce9f2b 209.9%,
+    #b48b2e 283.6%
+  );
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px ;
+  color: #BB0000;
+  border-radius: 30px;
+  font-weight: 600;
+  width: 400px;
+  animation-name: tada;
+  animation-delay: 0s;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+}
+#canvas {
+  position: absolute;
+}
+.tab-content .content {
+  position: relative;
+  background: white;
+  padding: 2rem 1rem;
+  margin: 30px;
+}
+.tab-content .content::before {
+  content: "";
+  position: absolute;
+  top: -1rem;
+  left: -1rem;
+  display: block;
+  background-color: #ffffff;
+  background-image: linear-gradient(
+    45deg,
+    transparent 49%,
+    rgb(185 28 28) 50%,
+    transparent 51%
+  );
+  background-size: 5px 5px;
+  right: -1rem;
+  bottom: -1rem;
+  z-index: -1;
+}
+/* Do some css reset on selected elements */
+h1,
+p {
+  margin: 0;
+}
+
+div.power_controls {
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  /* margin-right:70px; */
+}
+
+div.html5_logo {
+  margin-left: 70px;
+}
+
+/* Style applied to the spin button once a power has been selected */
+.clickable {
+  cursor: pointer;
+}
+
+/* Other misc styles */
+.margin_bottom {
+  margin-bottom: 5px;
+}
+
+.button-85 {
+  padding: 0.6em 2em;
+  border: none;
+  outline: none;
+  color: rgb(255, 255, 255);
+  background: linear-gradient(
+    98.49deg,
+    #dfb557 -39.81%,
+    #fdf7bf 33.9%,
+    #d6ab48 94.09%,
+    #ae832d 149.71%,
+    #ce9f2b 209.9%,
+    #b48b2e 283.6%
+  );
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px ;
+  color: #BB0000;
+  cursor: pointer;
+  position: relative;
+  z-index: 0;
+  border-radius: 10px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  animation-name: zoom-hover;
+  animation-delay: 0s;
+  animation-duration: 0.7s;
+  animation-iteration-count: infinite;
+}
+
+.button-85:before {
+  content: "";
+  background: linear-gradient(
+    45deg,
+    #ff0000,
+    #ff7300,
+    #fffb00,
+    #48ff00,
+    #00ffd5,
+    #002bff,
+    #7a00ff,
+    #ff00c8,
+    #ff0000
+  );
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  background-size: 400%;
+  z-index: -1;
+  filter: blur(5px);
+  -webkit-filter: blur(5px);
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  animation: glowing-button-85 20s linear infinite;
+  transition: opacity 0.3s ease-in-out;
+  border-radius: 10px;
+}
+.button-85:after {
+	z-index: -1;
+	content: "";
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(
+	  98.49deg,
+	  #dfb557 -39.81%,
+	  #fdf7bf 33.9%,
+	  #d6ab48 94.09%,
+	  #ae832d 149.71%,
+	  #ce9f2b 209.9%,
+	  #b48b2e 283.6%
+	);
+	box-shadow: rgba(99, 99, 99, 0.2) 0px 2px ;
+	color: #BB0000;
+	left: 0;
+	top: 0;
+	border-radius: 10px;
+  }
+.title{
+	font-weight: 900;
+	color: rgb(185 28 28);
+}
+.title span{
+}
+@keyframes glowing-button-85 {
+  0% {
+    background-position: 0 0;
+  }
+  50% {
+    background-position: 400% 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}
+@keyframes zoom-hover {
+    0% {
+        -webkit-transform: scale(1);
+        -ms-transform: scale(1);
+        transform: scale(1);
+    }
+    10%,20%,30%,40%, 50%, 60%, 70%,80%, 90% {
+        -webkit-transform: scale(1.3);
+        -ms-transform: scale(1.3) ;
+        transform: scale(1.3) ;
+    }
+    100% {
+        -webkit-transform: scale(1) rotate(0);
+        -ms-transform: scale(1) rotate(0);
+        transform: scale(1) rotate(0);
+    }
+    
+}
+
+@keyframes tada {
+  0% {
+    -webkit-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1);
+  }
+
+  10%,
+  20% {
+    -webkit-transform: scale(0.9) rotate(-3deg);
+    -ms-transform: scale(0.9) rotate(-3deg);
+    transform: scale(0.9) rotate(-3deg);
+  }
+  30%,
+  50%,
+  70%,
+  90% {
+    -webkit-transform: scale(1.1) rotate(3deg);
+    -ms-transform: scale(1.1) rotate(3deg);
+    transform: scale(1.1) rotate(3deg);
+  }
+  40%,
+  60%,
+  80% {
+    -webkit-transform: scale(1.1) rotate(-3deg);
+    -ms-transform: scale(1.1) rotate(-3deg);
+    transform: scale(1.1) rotate(-3deg);
+  }
+  100% {
+    -webkit-transform: scale(1) rotate(0);
+    -ms-transform: scale(1) rotate(0);
+    transform: scale(1) rotate(0);
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .the_wheel img {
+    width: 90%;
+  }
+  #canvas {
+    width: 90%;
+    height: auto;
+  }
+  .banner {
+	width: 75%;
+  }
+}
+.mobile-width {
+  width: 50%;
+}
+@media only screen and (max-width: 600px) {
+  .mobile-width {
+    width: 90%;
+  }
+}

@@ -1,0 +1,142 @@
+<html>
+	<head>
+		<title>Vòng quay may mắn - Naris.vn</title>
+		<link rel="icon" type="image/x-icon" href="img/favicon-naris.webp">
+		<meta name="viewport"
+			content="width=device-width, height=device-height, initial-scale=1.0">
+
+		<link rel="stylesheet" href="css/main.css" />
+		<link rel="stylesheet" href="css/bootstrap.min.css" />
+
+		<script type="text/javascript" src="js/Winwheel.js"></script>
+		<script type="text/javascript" src="js/bootstrap.bundle.min.js"></script>
+		<script
+			src="js/TweenMax.min.js"></script>
+		<link
+			href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+			rel="stylesheet"
+			integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+			crossorigin="anonymous" />
+		<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css'
+			rel='stylesheet'>
+		<script src="https://cdn.tailwindcss.com"></script>
+		
+	</head>
+	<body id="wall">
+		<div align="center">
+			<div class="mb-5">
+				<div class="banner mt-10">Làm đẹp thả ga không lo về giá</div>
+				<div
+					class="flex flex-col lg:flex-row items-center justify-content-around">
+					<div
+						class="power_controls mt-4 lg:mt-0 lg:w-max px-4 py-4 rounded bg-white lg:mr-14 mobile-width">
+						<div>
+							<span class="text-danger" style="font-size: 13px;"><i>*Vui lòng điền
+									thông tin để quay thưởng</i></span></div>
+						<div class="text-left">
+							<label for="name" class="mb-1">Họ tên:</label>
+							<input
+								class="form-control "
+								type="text"
+								name="name"
+								id="name" />
+						</div>
+						<div class="text-left"><span class="text-danger" style="font-size: 13px;"><i
+									id="errorName"></i></span></div>
+						<div class="text-left">
+							<label for="phone" class="mb-1">Số điện thoại:</label>
+							<input
+								class="form-control"
+								type="text"
+								name="phone"
+								id="phone" />
+						</div>
+						<div class="text-left"><span class="text-danger" style="font-size: 13px;"><i
+									id="errorPhone"></i></span></div>
+						<span>Bạn có <span id="countWheel"></span> lượt quay</span>
+					</div>
+					<div class="text-center mt-4" id="wheelButton">
+						<button class="button-85" onClick="checkData();">Quay ngay</button>
+					</div>
+					<div
+						style="width: 438px; height: 582px;display: none;"
+						class="the_wheel flex items-center justify-center" id="wheel">
+						<img src="img/wheel_back.png" alt>
+						<canvas id="canvas" width="434" height="434"> </canvas>
+					</div>
+				</div>
+			</div>
+			<div class="tab-content">
+				<div class="card-title">
+					<h1 class="text-2xl text-uppercase font-bold title"><span>Thể lệ chương
+							trình</span></h1>
+				</div>
+				<div class="content text-red-700 px-4">
+					<span>Chương trình: <span class="font-bold">"Vòng quay may mắn - cơ hội nhân đôi"
+							100% nhận được
+							quà</span></span>
+					<br />
+					<span>Khách hàng sẽ thực hiện quay may mắn trực tiếp trên điện thoại của
+						mình ( bằng cách quét mã QR truy cập link vòng quay may mắn) hoặc có
+						thể quay trực tiếp tại Tablet tại cửa hàng</span>
+					<br />
+					<span>
+						<span class="font-bold">Cơ cấu giải thưởng :</span>
+						<ul>
+							<li>1. Phần quà của cửa hàng <i class='bx bxs-gift'></i></li>
+							<li>2. Voucher giảm trực tiếp 20.000đ <i class='bx bxs-purchase-tag-alt'></i></li>
+							<li>3. Voucher giảm trực tiếp 50.000đ <i class='bx bxs-purchase-tag-alt'></i></li>
+						</ul>
+					</span>
+					<br />
+					<span>Quý khách vui lòng nhập đúng thông tin cá nhân.</span>
+					<br />
+					<span><i>Trong trường hợp thông tin cá nhân không có thật, giải thưởng sẽ
+							bị huỷ</i></span>
+					<br />
+					<span>
+						<span class="font-bold">Điều kiện áp dụng:</span>
+						<ul>
+							<li><i class='bx bxs-hand-right'></i> Đơn hàng có giá trị tối thiểu là
+								499.000đ</li>
+							<li><i class='bx bxs-hand-right'></i> Mỗi ngày chỉ có tối đa 20 phần quà</li>
+						</ul>
+					</span>
+					<div class="text-hotline mt-3">
+						<span class="text-xl"><i class='bx bxs-phone-call'></i> 0989854739</span>
+					</div>
+				</div>
+			</div>
+		</div>
+		Button trigger modal
+		<button type="button" class="btn btn-primary" data-bs-toggle="modal"
+			data-bs-target="#modal">
+			Launch demo modal
+		</button>
+
+		<!-- Modal -->
+		<div class="modal fade" id="modal" tabindex="-1"
+			aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel"><span id="title-modal"></span></h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal"
+							aria-label="Close"></button>
+					</div>
+					<div class="modal-body">
+						<span id="content-modal"></span>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-outline-success" data-bs-dismiss="modal">Đồng ý</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script
+			src="https://code.jquery.com/jquery-3.7.0.min.js"
+			integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g="
+			crossorigin="anonymous"></script>
+		<script type="text/javascript" src="js/form.js"></script>
+	</body>
+</html>
