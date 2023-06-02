@@ -1,7 +1,7 @@
 <html>
 	<head>
-		<title>Vòng quay may mắn - Naris.vn</title>
-		<link rel="icon" type="image/x-icon" href="img/favicon-naris.webp">
+		<title>Vòng quay may mắn - NaturePCS</title>
+		<link rel="icon" type="image/x-icon" href="img/favicon-nature.jpg">
 		<meta name="viewport"
 			content="width=device-width, height=device-height, initial-scale=1.0">
 
@@ -20,49 +20,31 @@
 		<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css'
 			rel='stylesheet'>
 		<script src="https://cdn.tailwindcss.com"></script>
-		
+
 	</head>
 	<body id="wall">
-		<div align="center">
-			<div class="mb-5">
-				<div class="banner mt-10">Làm đẹp thả ga không lo về giá</div>
-				<div
-					class="flex flex-col lg:flex-row items-center justify-content-around">
-					<div
-						class="power_controls mt-4 lg:mt-0 lg:w-max px-4 py-4 rounded bg-white lg:mr-14 mobile-width">
-						<div>
-							<span class="text-danger" style="font-size: 13px;"><i>*Vui lòng điền
-									thông tin để quay thưởng</i></span></div>
-						<div class="text-left">
-							<label for="name" class="mb-1">Họ tên:</label>
-							<input
-								class="form-control "
-								type="text"
-								name="name"
-								id="name" />
+		<div align="center" id="wraper">
+			<div class="tab-content mb-5">
+				<div>
+					<div><img src="img/logo.png" alt="logo" width="250px"> </div>
+					<div class="count-wheel">Bạn có <span id=countWheel></span> lượt quay</div>
+					<div id="block-wheel" bt-type="blockHtml"
+						class="block-widget  sticky-bt none ">
+						<div
+							class="block-content">
+							<div class="vong-quay">
+								<canvas
+									id="canvas" width="600" height="600">
+									Canvas not supported, use another browser.
+								</canvas>
+								<img id="prizePointer"
+									src="https://blog-bbh.s3.ap-southeast-1.amazonaws.com/Kim-1611222327.png">
+								<img onclick="checkData()"
+									src="https://blog-bbh.s3.ap-southeast-1.amazonaws.com/kim-tron-1613003709.png"
+									width="100px"
+									id="start-wheel">
+							</div>
 						</div>
-						<div class="text-left"><span class="text-danger" style="font-size: 13px;"><i
-									id="errorName"></i></span></div>
-						<div class="text-left">
-							<label for="phone" class="mb-1">Số điện thoại:</label>
-							<input
-								class="form-control"
-								type="text"
-								name="phone"
-								id="phone" />
-						</div>
-						<div class="text-left"><span class="text-danger" style="font-size: 13px;"><i
-									id="errorPhone"></i></span></div>
-						<span>Bạn có <span id="countWheel"></span> lượt quay</span>
-					</div>
-					<div class="text-center mt-4" id="wheelButton">
-						<button class="button-85" onClick="checkData();">Quay ngay</button>
-					</div>
-					<div
-						style="width: 438px; height: 582px;display: none;"
-						class="the_wheel flex items-center justify-center" id="wheel">
-						<img src="img/wheel_back.png" alt>
-						<canvas id="canvas" width="434" height="434"> </canvas>
 					</div>
 				</div>
 			</div>
@@ -103,28 +85,61 @@
 						</ul>
 					</span>
 					<div class="text-hotline mt-3">
-						<span class="text-xl"><i class='bx bxs-phone-call'></i> 0989854739</span>
+						<span class="text-xl"><i class='bx bxs-phone-call'></i> 02835354045</span>
 					</div>
 				</div>
 			</div>
-		</div>
-		
 
-		<!-- Modal -->
-		<div class="modal fade" id="modal" tabindex="-1"
-			aria-labelledby="exampleModalLabel" aria-hidden="true">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h5 class="modal-title" id="exampleModalLabel"><span id="title-modal"></span></h5>
-						<button type="button" class="btn-close" data-bs-dismiss="modal"
-							aria-label="Close"></button>
-					</div>
-					<div class="modal-body">
-						<span id="content-modal"></span>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-outline-success" data-bs-dismiss="modal">Đồng ý</button>
+			<!-- Modal -->
+			<div class="modal fade" id="modal" tabindex="-1"
+				aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLabel"><span id="title-modal"></span></h5>
+							<button type="button" class="btn-close" data-bs-dismiss="modal"
+								aria-label="Close"></button>
+						</div>
+						<div class="modal-body">
+							<span id="content-modal"></span>
+							<div id="input-infor" style="display: none;">
+								<div>
+									<span class="text-danger" style="font-size: 13px;"><i>*Vui lòng điền
+											thông tin để nhận thưởng</i></span>
+								</div>
+								<div class="text-left">
+									<label for="name" class="mb-1">Họ tên:</label>
+									<input
+										class="form-control "
+										type="text"
+										name="name"
+										id="name" placeholder="Họ tên" />
+								</div>
+								<div class="text-left"><span class="text-danger"
+										style="font-size: 13px;"><i
+											id="errorName"></i></span></div>
+								<div class="text-left">
+									<label for="phone" class="mb-1">Số điện thoại:</label>
+									<input
+										class="form-control"
+										type="text"
+										name="phone"
+										id="phone" placeholder="Số điện thoại" />
+								</div>
+								<div class="text-left"><span class="text-danger"
+										style="font-size: 13px;"><i
+											id="errorPhone"></i></span>
+								</div>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button id="sucess-form" onclick="sendData()" type="button"
+								class="btn btn-outline-success"
+								style="display: none;">Đồng ý</button>
+							<button id="conti-wheel" type="button"
+								class="btn btn-outline-success"
+								data-bs-dismiss="modal" style="display: none;">Đồng ý</button>
+						</div>
 					</div>
 				</div>
 			</div>

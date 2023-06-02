@@ -1,51 +1,26 @@
 // First get the context of the canvas as the gradient is created on this.
-let canvas = document.getElementById('canvas');
-let ctx = canvas.getContext('2d');
+let canvas = document.getElementById("canvas");
+let ctx = canvas.getContext("2d");
 
 // Create radial gradient (this works best with the roundness of the wheel)
 // https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/createRadialGradient
 // Many values should be the centre of the canvas. If the canvas is square can just use the height / 2.
 // The remaining values are the radius of the starting circle then the radius of the ending circle.
-let canvasCenter = canvas.height / 2;
-// Create new wheel object specifying the parameters at creation time.
-let radGradient1 = ctx.createRadialGradient(canvasCenter, canvasCenter, 50, canvasCenter, canvasCenter, 250);
-let radGradient2 = ctx.createRadialGradient(canvasCenter, canvasCenter, 50, canvasCenter, canvasCenter, 250);
-let radGradient3 = ctx.createRadialGradient(canvasCenter, canvasCenter, 50, canvasCenter, canvasCenter, 250);
-let radGradient4 = ctx.createRadialGradient(canvasCenter, canvasCenter, 50, canvasCenter, canvasCenter, 250);
-
-// Add the colour stops - 0.0 should be the first, 1.0 the last, others in between.
-radGradient1.addColorStop(0, "orange");
-radGradient1.addColorStop(0.5, "white");
-radGradient1.addColorStop(1, "orange");
-radGradient1.addColorStop(1, "orange");
-
-radGradient2.addColorStop(0, "red");
-radGradient2.addColorStop(0.5, "white");
-radGradient2.addColorStop(1, "red");
-radGradient2.addColorStop(1, "red");
-
-radGradient3.addColorStop(0, "#FF69B4");
-radGradient3.addColorStop(0.5, "white");
-radGradient3.addColorStop(1, "#FF69B4");
-radGradient3.addColorStop(1, "#FF69B4");
-
-radGradient4.addColorStop(0, "#FF6347");
-radGradient4.addColorStop(0.5, "white");
-radGradient4.addColorStop(1, "#FF6347");
-radGradient4.addColorStop(1, "#FF6347");
 
 let theWheel = new Winwheel({
   numSegments: 4, // Specify number of segments.
-  outerRadius: 212, // Set outer radius so wheel fits inside the background.
+  drawMode: "image",
+  drawText: false,
+  outerRadius: 130, // Set outer radius so wheel fits inside the background.
   textFontSize: 24, // Set font size as desired.
   // Define segments including colour and text.
   segments: [
-    { fillStyle: radGradient1, text: "Phần quà" },
-    { fillStyle: radGradient4, text: "Voucher 20k" },
-    { fillStyle: radGradient3, text: "Voucher 50k" },
-    { fillStyle: radGradient2, text: "Thêm lượt quay" },
+    { text: "Phần quà" },
+    { text: "Voucher 20k" },
+    { text: "Voucher 50k" },
+    { text: "Thêm lượt quay" },
   ],
-  
+
   // Specify the animation to use.
   animation: {
     type: "spinToStop",
@@ -55,15 +30,22 @@ let theWheel = new Winwheel({
     callbackSound: playSound, //Hàm gọi âm thanh khi quay
     soundTrigger: "pin", //Chỉ định chân là để kích hoạt âm thanh
   },
-  pins: {
-    number: 8, //Số lượng chân. Chia đều xung quanh vòng quay.
-  },
+  // pins: {
+  //   number: 16, //Số lượng chân. Chia đều xung quanh vòng quay.
+  // },
 });
-
+let loadedImg = new Image();
+loadedImg.src =
+  "https://blog-bbh.s3.ap-southeast-1.amazonaws.com/vongquay-6-1651798476.png";
+theWheel.wheelImage = loadedImg;
+theWheel.draw();
 
 // Vars used by the code in this page to do power controls.
 let wheelPower = 0;
 let wheelSpinning = false;
+let fullname = null;
+let phone = null;
+let gif = null;
 document.getElementById("countWheel").innerHTML = 1;
 
 let audio = new Audio("sound/tick.mp3");
@@ -73,19 +55,7 @@ function playSound() {
   audio.play();
 }
 function checkData() {
-  if($('input[name="name"]').val() == ''){
-    document.getElementById("name").classList.add("is-invalid");
-    document.getElementById("errorName").innerHTML = 'Vui lòng nhập họ tên'
-  }
-  if($('input[name="phone"]').val() == ''){
-    document.getElementById("phone").classList.add("is-invalid");
-    document.getElementById("errorPhone").innerHTML = 'Vui lòng nhập số điện thoại'
-
-  }
-  if ($('input[name="name"]').val() && $('input[name="phone"]').val()) {
-    document.getElementById("wheel").style.display = "flex";
-    this.startSpin()
-  }
+  this.startSpin();
 }
 // -------------------------------------------------------
 // Click handler for spin button.
@@ -93,9 +63,9 @@ function checkData() {
 function startSpin() {
   // Ensure that spinning can't be clicked again while already running.
   if (wheelSpinning == false) {
-    document.getElementById('wheel').scrollIntoView({
-      behavior: 'smooth'
-    });
+    // document.getElementById('wheel').scrollIntoView({
+    //   behavior: 'smooth'
+    // });
     // Based on the power level selected adjust the number of spins for the wheel, the more times is has
     // to rotate with the duration of the animation the quicker the wheel spins.
     if (wheelPower == 1) {
@@ -133,16 +103,46 @@ function resetWheel() {
 // note the indicated segment is passed in as a parmeter as 99% of the time you will want to know this to inform the user of their prize.
 // -------------------------------------------------------
 function alertPrize(indicatedSegment) {
-  var name = $('input[name="name"]').val();
-  var phone = $('input[name="phone"]').val();
-  var gif = indicatedSegment.text;
+  gif = indicatedSegment.text;
   if (gif != "Thêm lượt quay") {
-    document.getElementById("wheelButton").style.display = "none";
+    document.getElementById("input-infor").style.display = "block";
+    document.getElementById("conti-wheel").style.display = "none";
+
+    document.getElementById("title-modal").innerHTML = "Xin chúc mừng !!!";
+    document.getElementById("content-modal").innerHTML =
+      "Phần quà của bạn là : " + gif;
+    document.getElementById("sucess-form").style.display = "block";
+
+    $("#modal").modal("show");
+  } else {
+    this.resetWheel();
+    document.getElementById("conti-wheel").style.display = "block";
+    document.getElementById("input-infor").style.display = "none";
+
+    document.getElementById("title-modal").innerHTML = "Thử lại nào !!!";
+    document.getElementById("content-modal").innerHTML =
+      "Bạn nhân được thêm 1 lượt quay";
+    $("#modal").modal("show");
+    document.getElementById("countWheel").innerHTML = 1;
+  }
+}
+function sendData() {
+  if ($('input[name="name"]').val() == "") {
+    document.getElementById("name").classList.add("is-invalid");
+    document.getElementById("errorName").innerHTML = "Vui lòng nhập họ tên";
+  } else if ($('input[name="phone"]').val() == "") {
+    document.getElementById("phone").classList.add("is-invalid");
+    document.getElementById("errorPhone").innerHTML =
+      "Vui lòng nhập số điện thoại";
+  } else {
+    fullname = $('input[name="name"]').val();
+    phone = $('input[name="phone"]').val();
     let data = {
-      "entry.2017066631": name,
+      "entry.2017066631": fullname,
       "entry.1129439822": phone,
       "entry.666980564": gif,
     };
+    console.log(data);
     var queryString = new URLSearchParams(data);
     queryString = queryString.toString();
     const xhr = new XMLHttpRequest();
@@ -153,15 +153,6 @@ function alertPrize(indicatedSegment) {
     );
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.send(queryString);
-    document.getElementById("title-modal").innerHTML = 'Xin chúc mừng !!!';
-    document.getElementById("content-modal").innerHTML = 'Bạn nhận được 1 '+gif+' vui lòng liên hệ để nhận thưởng hoặc chúng tôi sẽ liên hệ tới bạn sớm nhất !';
-    $('#modal').modal('show');
-  } else {
-    this.resetWheel();
-    document.getElementById("title-modal").innerHTML = 'Thử lại nào !!!';
-    document.getElementById("content-modal").innerHTML = 'Bạn nhân được thêm 1 lượt quay';
-    $('#modal').modal('show');
-    document.getElementById("countWheel").innerHTML = 1;
+    $("#modal").modal("hide");
   }
 }
-
