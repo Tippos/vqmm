@@ -11,7 +11,7 @@ let theWheel = new Winwheel({
   numSegments: 4, // Specify number of segments.
   drawMode: "image",
   drawText: false,
-  outerRadius: 130, // Set outer radius so wheel fits inside the background.
+  outerRadius: 255, // Set outer radius so wheel fits inside the background.
   textFontSize: 24, // Set font size as desired.
   // Define segments including colour and text.
   segments: [
@@ -24,15 +24,15 @@ let theWheel = new Winwheel({
   // Specify the animation to use.
   animation: {
     type: "spinToStop",
-    duration: 5, // Duration in seconds.
+    duration: 8, // Duration in seconds.
     spins: 4, // Number of complete spins.
     callbackFinished: alertPrize,
     callbackSound: playSound, //Hàm gọi âm thanh khi quay
     soundTrigger: "pin", //Chỉ định chân là để kích hoạt âm thanh
   },
-  // pins: {
-  //   number: 16, //Số lượng chân. Chia đều xung quanh vòng quay.
-  // },
+  pins: {
+    number: 16, //Số lượng chân. Chia đều xung quanh vòng quay.
+  },
 });
 let loadedImg = new Image();
 loadedImg.src =
