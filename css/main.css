@@ -118,7 +118,7 @@ div.html5_logo {
 }
 #prizePointer {
   position: absolute;
-  top: 0px;
+  top: 10px;
   width: 100px;
   left: 255px;
 }
