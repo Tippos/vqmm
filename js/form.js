@@ -138,9 +138,9 @@ function sendData() {
     fullname = $('input[name="name"]').val();
     phone = $('input[name="phone"]').val();
     let data = {
-      "entry.2017066631": fullname,
-      "entry.1129439822": phone,
-      "entry.666980564": gif,
+      "entry.112484636": fullname,
+      "entry.64536925": phone,
+      "entry.582744231": gif,
     };
     console.log(data);
     var queryString = new URLSearchParams(data);
@@ -148,7 +148,7 @@ function sendData() {
     const xhr = new XMLHttpRequest();
     xhr.open(
       "POST",
-      "https://docs.google.com/forms/u/0/d/e/1FAIpQLSfPZ7-dYZceFQh_9SwRrlivU8h_fR4lkMI5E0Nm5k_P32QFEQ/formResponse",
+      "https://docs.google.com/forms/u/0/d/e/1FAIpQLSfhkJs6BdhMJCZDvYBmxOqZ6zKJ0wS_y60mC8_Flp3tH7LpCw/formResponse",
       true
     );
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
