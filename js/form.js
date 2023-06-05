@@ -11,14 +11,14 @@ let theWheel = new Winwheel({
   numSegments: 4, // Specify number of segments.
   drawMode: "image",
   drawText: false,
-  outerRadius: 255, // Set outer radius so wheel fits inside the background.
+  outerRadius: 258, // Set outer radius so wheel fits inside the background.
   textFontSize: 24, // Set font size as desired.
   // Define segments including colour and text.
   segments: [
-    { text: "Phần quà" },
-    { text: "Voucher 20k" },
-    { text: "Voucher 50k" },
     { text: "Thêm lượt quay" },
+    { text: "Voucher 50k" },
+    { text: "Voucher 20k" },
+    { text: "Phần quà" },
   ],
 
   // Specify the animation to use.
@@ -36,7 +36,7 @@ let theWheel = new Winwheel({
 });
 let loadedImg = new Image();
 loadedImg.src =
-  "https://blog-bbh.s3.ap-southeast-1.amazonaws.com/vongquay-6-1651798476.png";
+  "img/wheel.png";
 theWheel.wheelImage = loadedImg;
 theWheel.draw();
 
